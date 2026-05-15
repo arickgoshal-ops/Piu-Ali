@@ -341,7 +341,7 @@ export default function App() {
                   Tere chehre par mera pehra ho,<br/>
                   Tujhe mujhse ishq ho,<br/>
                   Khuda kare yeh ishq samandar se bhi gehra ho...<br/><br/>
-                  <strong className="text-gold font-bold">Will you be my girlfriend?</strong>
+                  <strong className="text-gold font-bold">I am sorry for everything wrong I've done, but my love for you remains forever. ❤️</strong>
                 </p>
               </motion.div>
 
