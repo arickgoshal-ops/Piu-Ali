@@ -116,9 +116,18 @@ const loadingMessages = [
   'Warning: Too much cute detected! 💥',
 ];
 
+const bgImages = [
+  '/IMG_9486.jpg',
+  '/IMG_9524.JPG.jpeg',
+  '/IMG_9525.JPG.jpeg',
+  '/IMG_9526.JPG.jpeg',
+  '/IMG_9528.JPG.jpeg'
+];
+
 export default function App() {
   const [stage, setStage] = useState('loading'); // loading, main, response
   const [responseType, setResponseType] = useState(null);
+  const [bgIndex, setBgIndex] = useState(0);
 
   const [msgIdx, setMsgIdx] = useState(0);
   const [msgOpacity, setMsgOpacity] = useState(1);
@@ -164,6 +173,14 @@ export default function App() {
       clearInterval(msgInterval);
       clearTimeout(initTimer);
     };
+  }, [stage]);
+
+  useEffect(() => {
+    if (stage !== 'main') return;
+    const interval = setInterval(() => {
+      setBgIndex(prev => (prev + 1) % bgImages.length);
+    }, 4500);
+    return () => clearInterval(interval);
   }, [stage]);
 
   const handleResponse = (type) => {
@@ -241,7 +258,19 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <div className="bg-photo" />
+            <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+              <AnimatePresence>
+                <motion.div
+                  key={bgIndex}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="bg-photo"
+                  style={{ backgroundImage: `url('${bgImages[bgIndex]}')` }}
+                />
+              </AnimatePresence>
+            </div>
             <div className="bg-overlay" />
 
             <div className="relative z-10 text-center p-8 max-w-[560px]">

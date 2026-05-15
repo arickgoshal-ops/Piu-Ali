@@ -109,8 +109,10 @@ body {
 
 .bg-photo {
   position: absolute; inset: 0;
-  background: url('/IMG_9486.jpg') center/cover no-repeat;
   filter: brightness(0.4) saturate(1.1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .bg-overlay {
