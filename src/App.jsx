@@ -83,9 +83,9 @@ const Confetti = () => {
 
 const responsesData = {
   yes: {
-    emoji: '💍🌹',
-    heading: 'She Said YES! 🎉',
-    text: `My heart just did a thousand somersaults! 💃\n\nYou have no idea how long I've been practising saying this. You are the person my heart searches for in every crowded room, the name I smile at when no one's watching, the reason my mornings feel warmer.\n\nI promise to be your safe place, your silliest joke, and your greatest adventure.\n\nI love you, Piu. Always will. 🌹`,
+    emoji: '🥺💖',
+    heading: 'Thank You So Much! 💕',
+    text: `I messed up... and I'm really sorry for that.\n\nI promise I'll be better for you.\n\nPlease forgive me... You mean so much to me.\n\nI'm really sorry, my love. I accidentally upset the most precious and adorable person in my life — you. 🥹\n\nPlease forgive me if I hurt you or wasted even a little of your precious time. I promise I didn't mean to. 🥺💕\n\nI love you so much my cutie ❤️`,
     themeClass: 'text-gold drop-shadow-[0_0_30px_rgba(244,197,66,0.6)]',
     cardTheme: 'border-rose/50 bg-rose/10',
     confetti: true
@@ -310,9 +310,9 @@ export default function App() {
             </div>
             <div className="bg-overlay" />
 
-            <div className="relative z-10 text-center p-8 max-w-[560px]">
+            <div className="relative z-10 text-center p-4 sm:p-8 max-w-[560px] w-full max-h-[100dvh] overflow-y-auto flex flex-col justify-center">
               <motion.div 
-                className="font-vibes text-[clamp(3rem,9vw,5.5rem)] text-gold drop-shadow-[0_0_40px_rgba(244,197,66,0.5)] leading-tight mb-2"
+                className="font-vibes text-[clamp(2.5rem,8vw,5.5rem)] text-gold drop-shadow-[0_0_40px_rgba(244,197,66,0.5)] leading-tight mb-1 sm:mb-2"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
@@ -321,7 +321,7 @@ export default function App() {
               </motion.div>
               
               <motion.div 
-                className="font-lora italic text-[#f9d5e2] text-[1.05rem] mb-10 tracking-wide"
+                className="font-lora italic text-[#f9d5e2] text-[0.9rem] sm:text-[1.05rem] mb-4 sm:mb-10 tracking-wide"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
@@ -330,13 +330,13 @@ export default function App() {
               </motion.div>
 
               <motion.div 
-                className="bg-white/5 backdrop-blur-md border border-rose/30 rounded-2xl p-8 pb-10 mb-8"
+                className="bg-white/5 backdrop-blur-md border border-rose/30 rounded-2xl p-5 sm:p-8 pb-6 sm:pb-10 mb-5 sm:mb-8"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
               >
-                <span className="text-4xl block mb-3">💌</span>
-                <p className="font-lora text-[1.25rem] text-white leading-relaxed">
+                <span className="text-3xl sm:text-4xl block mb-2 sm:mb-3">💌</span>
+                <p className="font-lora text-[0.95rem] sm:text-[1.25rem] text-white leading-relaxed">
                   Meri aankhon ke samne tera chehra ho,<br/>
                   Tere chehre par mera pehra ho,<br/>
                   Tujhe mujhse ishq ho,<br/>
@@ -346,19 +346,19 @@ export default function App() {
               </motion.div>
 
               <motion.div 
-                className="flex flex-col gap-4"
+                className="flex flex-col gap-3 sm:gap-4"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.7 }}
               >
                 <button 
-                  className="choice-btn px-6 py-4 rounded-full font-quicksand text-base font-semibold tracking-wide bg-gradient-to-br from-rose to-deep-rose text-white shadow-[0_6px_25px_rgba(255,78,126,0.5)]"
+                  className="choice-btn px-4 py-3 sm:px-6 sm:py-4 rounded-full font-quicksand text-[0.95rem] sm:text-base font-semibold tracking-wide bg-gradient-to-br from-rose to-deep-rose text-white shadow-[0_6px_25px_rgba(255,78,126,0.5)]"
                   onClick={() => handleResponse('yes')}
                 >
                   💖 Yes! Of course I will!
                 </button>
                 <motion.button 
-                  className="choice-btn px-6 py-4 rounded-full font-quicksand text-base font-semibold tracking-wide bg-gradient-to-br from-gold to-[#e07b00] text-[#1a0a0f] shadow-[0_6px_25px_rgba(244,197,66,0.4)]"
+                  className="choice-btn px-4 py-3 sm:px-6 sm:py-4 rounded-full font-quicksand text-[0.95rem] sm:text-base font-semibold tracking-wide bg-gradient-to-br from-gold to-[#e07b00] text-[#1a0a0f] shadow-[0_6px_25px_rgba(244,197,66,0.4)]"
                   onMouseEnter={handleNoHover}
                   onClick={handleNoHover}
                   animate={isDodging ? { x: noPos.x, y: noPos.y } : {}}
@@ -384,16 +384,16 @@ export default function App() {
           >
             {responsesData[responseType].confetti && <Confetti />}
             
-            <div className={`w-full max-w-[500px] bg-white/5 border border-rose/30 rounded-3xl py-12 px-10 text-center card-enter ${responsesData[responseType].cardTheme}`}>
-              <span className="text-[4rem] mb-5 block">{responsesData[responseType].emoji}</span>
-              <div className={`font-vibes text-[clamp(2.2rem,7vw,3.5rem)] mb-4 ${responsesData[responseType].themeClass}`}>
+            <div className={`w-full max-w-[500px] bg-white/5 border border-rose/30 rounded-2xl py-8 sm:py-12 px-6 sm:px-10 text-center card-enter ${responsesData[responseType].cardTheme}`}>
+              <span className="text-5xl sm:text-[4rem] mb-3 sm:mb-5 block">{responsesData[responseType].emoji}</span>
+              <div className={`font-vibes text-[clamp(2rem,6vw,3.5rem)] mb-3 sm:mb-4 ${responsesData[responseType].themeClass}`}>
                 {responsesData[responseType].heading}
               </div>
-              <p className="font-lora italic text-[1.1rem] leading-relaxed text-[#f9d5e2] whitespace-pre-wrap">
+              <p className="font-lora italic text-[0.95rem] sm:text-[1.1rem] leading-relaxed text-[#f9d5e2] whitespace-pre-wrap">
                 {responsesData[responseType].text}
               </p>
               <button 
-                className="mt-8 px-8 py-3 rounded-full bg-transparent border border-rose/50 text-[#f9d5e2] font-quicksand text-sm cursor-pointer transition-all hover:bg-rose/20"
+                className="mt-6 sm:mt-8 px-6 sm:px-8 py-3 rounded-full bg-transparent border border-rose/50 text-[#f9d5e2] font-quicksand text-sm cursor-pointer transition-all hover:bg-rose/20"
                 onClick={() => setStage('main')}
               >
                 ← Go back
