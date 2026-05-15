@@ -85,7 +85,7 @@ const responsesData = {
   yes: {
     emoji: '💍🌹',
     heading: 'She Said YES! 🎉',
-    text: `My heart just did a thousand somersaults! 💃\n\nYou have no idea how long I've been practising saying this. You are the person my heart searches for in every crowded room, the name I smile at when no one's watching, the reason my mornings feel warmer.\n\nI promise to be your safe place, your silliest joke, and your greatest adventure.\n\nI love you, Gavati. Always will. 🌹`,
+    text: `My heart just did a thousand somersaults! 💃\n\nYou have no idea how long I've been practising saying this. You are the person my heart searches for in every crowded room, the name I smile at when no one's watching, the reason my mornings feel warmer.\n\nI promise to be your safe place, your silliest joke, and your greatest adventure.\n\nI love you, Piu. Always will. 🌹`,
     themeClass: 'text-gold drop-shadow-[0_0_30px_rgba(244,197,66,0.6)]',
     cardTheme: 'border-rose/50 bg-rose/10',
     confetti: true
@@ -133,6 +133,7 @@ export default function App() {
   const [msgOpacity, setMsgOpacity] = useState(1);
   const [meterWidth, setMeterWidth] = useState(0);
   const [showPercent, setShowPercent] = useState(false);
+  const [currentPercent, setCurrentPercent] = useState(1);
   const [showEmoji, setShowEmoji] = useState(false);
   const [showEnterBtn, setShowEnterBtn] = useState(false);
   const [finalMsg, setFinalMsg] = useState(false);
@@ -152,9 +153,31 @@ export default function App() {
     // Initial load timings
     const initTimer = setTimeout(() => {
       setMeterWidth(100);
+      setShowPercent(true); // Fade in the number container
+      
+      const duration = 3200; // time it takes to fill the bar
+      const targetPercent = 175;
+      const startTime = performance.now();
+
+      const animatePercent = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing to make it slow down towards the end
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const nextValue = Math.max(1, Math.floor(easeOut * targetPercent));
+        
+        setCurrentPercent(nextValue);
+
+        if (progress < 1) {
+          requestAnimationFrame(animatePercent);
+        } else {
+          setCurrentPercent(targetPercent);
+        }
+      };
+      requestAnimationFrame(animatePercent);
 
       const percentTimer = setTimeout(() => {
-        setShowPercent(true);
         setShowEmoji(true);
         clearInterval(msgInterval);
         setFinalMsg(true);
@@ -200,7 +223,7 @@ export default function App() {
             transition={{ duration: 0.8 }}
           >
             <div className="font-vibes text-[clamp(2.8rem,8vw,5rem)] text-gold pulse-glow mb-8">
-              For My Gavati 💕
+              For My Piu 💕
             </div>
 
             <div className="w-[min(380px,90vw)] text-center">
@@ -221,7 +244,7 @@ export default function App() {
                   transform: showPercent ? 'scale(1)' : 'scale(0.5)'
                 }}
               >
-                175%
+                {currentPercent}%
               </div>
               
               <div 
@@ -280,7 +303,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
               >
-                Hey, Gavati 🌹
+                Hey, Piu 🌹
               </motion.div>
               
               <motion.div 
