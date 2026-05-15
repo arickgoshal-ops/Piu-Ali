@@ -138,6 +138,10 @@ export default function App() {
   const [showEnterBtn, setShowEnterBtn] = useState(false);
   const [finalMsg, setFinalMsg] = useState(false);
 
+  // For dodging "No" button
+  const [isDodging, setIsDodging] = useState(false);
+  const [noPos, setNoPos] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     if (stage !== 'loading') return;
 
@@ -209,6 +213,16 @@ export default function App() {
   const handleResponse = (type) => {
     setResponseType(type);
     setStage('response');
+  };
+
+  const handleNoHover = () => {
+    if (!isDodging) setIsDodging(true);
+    const maxX = window.innerWidth - 120;
+    const maxY = window.innerHeight - 60;
+    setNoPos({
+      x: Math.max(20, Math.random() * maxX),
+      y: Math.max(20, Math.random() * maxY)
+    });
   };
 
   return (
@@ -323,7 +337,10 @@ export default function App() {
               >
                 <span className="text-4xl block mb-3">💌</span>
                 <p className="font-lora text-[1.25rem] text-white leading-relaxed">
-                  Every moment with you feels like a dream I never want to wake up from.<br/><br/>
+                  Meri aankhon ke samne tera chehra ho,<br/>
+                  Tere chehre par mera pehra ho,<br/>
+                  Tujhe mujhse ishq ho,<br/>
+                  Khuda kare yeh ishq samandar se bhi gehra ho...<br/><br/>
                   <strong className="text-gold font-bold">Will you be my girlfriend?</strong>
                 </p>
               </motion.div>
@@ -340,18 +357,16 @@ export default function App() {
                 >
                   💖 Yes! Of course I will!
                 </button>
-                <button 
+                <motion.button 
                   className="choice-btn px-6 py-4 rounded-full font-quicksand text-base font-semibold tracking-wide bg-gradient-to-br from-gold to-[#e07b00] text-[#1a0a0f] shadow-[0_6px_25px_rgba(244,197,66,0.4)]"
-                  onClick={() => handleResponse('maybe')}
+                  onMouseEnter={handleNoHover}
+                  onClick={handleNoHover}
+                  animate={isDodging ? { x: noPos.x, y: noPos.y } : {}}
+                  style={isDodging ? { position: 'fixed', left: 0, top: 0, zIndex: 100 } : {}}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >
-                  🌸 Aww, let me think…
-                </button>
-                <button 
-                  className="choice-btn px-6 py-4 rounded-full font-quicksand text-base font-semibold tracking-wide bg-white/10 text-[#f9d5e2] border border-rose/40 shadow-[0_6px_25px_rgba(0,0,0,0.2)]"
-                  onClick={() => handleResponse('no')}
-                >
-                  🙈 Maybe not right now…
-                </button>
+                  No 🙈
+                </motion.button>
               </motion.div>
             </div>
           </motion.div>
